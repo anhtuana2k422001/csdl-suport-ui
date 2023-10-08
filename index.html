@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Support</title>
+    <link rel="stylesheet" href="./assets/css/app.css">
+</head>
+<body>
+    <div id="content-app" class="mg-bot-30">
+        <div id="title">
+            <h1 class="title-app">Phân Tích Cơ Sở Dữ Liệu</h1>
+        </div>
+    
+        <div>
+            <label class="label-csdl" for="name">Tập thuộc tính:</label><br/>
+            <input class="mg-top-10" type="text" name="attributeSet" value="{A, B, C, D, E, G}"><br><br>
+            <label class="label-csdl" for="message">Tập phụ thuộc hàm:</label><br/>
+            <textarea class="mg-top-10" name="dependencyChain" id="dependencyChain" cols="60" rows="3">{ AB →C; C →A; BC →D; ACD →B; D →EG; BE →C; CG →BD; CE →AG }</textarea><br><br>
+            <div class="text-box">
+                <a href="#" id="submit-csdl" class="btn btn-white btn-animate">Kiểm tra</a>
+            </div>
+        </div>
+    </div>
+  
+
+    <div>
+        <ul id="csdl-block"></ul>
+    </div>
+    
+    <div id="content-result">
+        <div class="result-error">
+            <span class="message-error" style="color: red;"></span>
+        </div>
+        <div class="csdl-phan-tich">
+
+            <div id="information-list">
+            </div>
+
+            <div id="primaryKey">
+                
+            </div>
+
+            <div id="minimalCove-container">
+                
+            </div>
+
+            <div id="normalForm">
+                
+            </div>
+        </div>
+    </div>
+    <script type="module" src="./assets/js/main.js"></script>
+</body>
+</html>
