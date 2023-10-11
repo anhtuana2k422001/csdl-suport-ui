@@ -1,5 +1,5 @@
-import { API_LIST_CSDL, API_PHAN_TICH } from './apiUrls.js';
-import { CreateUUID, EMPTY} from './common.js';
+import { API_PHAN_TICH } from './config/apiUrls.js';
+import { CreateUUID, EMPTY} from './utils/common.js';
 // Sử dụng apiListCSDL và apiPhanTich
 
 async function start() {
@@ -71,17 +71,20 @@ async function getListCSDL(apiCall) {
 
         const titleInformationList = document.createElement('h2');
         titleInformationList.textContent = "Thông tin lược đồ quan hệ";
+
         informationList.appendChild(titleInformationList);
         
-        const information = response.data.information; 
-        for (const key in information) {
-            if (information.hasOwnProperty(key)) {
-                const value = information[key];
-                const listItem = document.createElement('li');
-                listItem.textContent = `${key}: ${value}`;
-                informationList.appendChild(listItem);
-            }
-        }
+        
+        const listItem = document.createElement('ul');
+        const information = response.data.information.dataInfo; 
+        const html = information.map(function(item) {
+            return `<li>${item.description} : ${item.info}</li>`
+        });
+
+        listItem.innerHTML = html.join('');
+
+        informationList.appendChild(listItem);
+
         // Step 1: Tìm khóa chính
         const primaryKeyContainer = document.getElementById('primaryKey');
         const primaryKeyData = response.data.primaryKey;
