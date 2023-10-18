@@ -2,54 +2,344 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Phân Tích Cơ Sở Dữ Liệu</title>
-    <link rel="stylesheet" href="./assets/css/app.css">
+    <link rel="icon" href="/Content/img/image_icon.png" />
+    <link href="/references/css/min.css" rel="stylesheet" />
+    <link href="/content/css/layout.css" rel="stylesheet" />
+    <link href="/content/css/main.css" rel="stylesheet" />
 </head>
-<body>
-    <div id="content-app" class="mg-bot-30">
-        <div id="title">
-            <h1 class="title-app">Phân Tích Cơ Sở Dữ Liệu</h1>
-        </div>
-    
-        <div>
-            <label class="label-csdl" for="name">Tập thuộc tính:</label><br/>
-            <input class="mg-top-10" type="text" name="attributeSet" value="{A, B, C, D, E, G}"><br><br>
-            <label class="label-csdl" for="message">Tập phụ thuộc hàm:</label><br/>
-            <textarea class="mg-top-10" name="dependencyChain" id="dependencyChain" cols="60" rows="3">{ AB →C; C →A; BC →D; ACD →B; D →EG; BE →C; CG →BD; CE →AG }</textarea><br><br>
-            <div class="text-box">
-                <a href="javascript:;" id="submit-csdl" class="btn btn-white btn-animate">Kiểm tra</a>
+
+<body class="fixed-sn white-skin">
+    <div id="overlay" class="page-overlay">
+        <div class="spinner-overlay">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only spinner-white-only">
+                </div>
             </div>
         </div>
     </div>
-  
+    <div id="allmain">
+        <header>
+            <nav class="navbar fixed-top navbar-expand-lg  navbar-light white" id="menu-in">
+                <div class="container-fluid float-left justify-content-start align-items-start">
+                    <div class="collapse navbar-collapse justify-content-start" id="navbarSupportedContent-4">
+                        <ul class="navbar-nav" id="navbar">
 
-    <div>
-        <ul id="csdl-block"></ul>
-    </div>
-    
-    <div id="content-result">
-        <div class="result-error">
-            <span class="message-error" style="color: red;"></span>
+                            <li class="nav-item dropdown mb-0 trang-chu" id="trang-chu">
+                                <a class="showload navbar-brand nav-link waves-effect waves-light font-weight-bold indigo-text"
+                                    href="/index.html"> Trang chủ
+                                </a>
+                            </li>
+
+                            <li class="nav-item have-hover dropdown mb-0 main-menu danh-sach-don don-da-nop"
+                                id="don-phieu">
+                                <div class="btn-group dropdown">
+                                    <a class="nav-link waves-effect waves-light dark-grey-text font-weight-bold dropdown-toggle"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        href="https://anhtuana2k422001.github.io/database-support-software/">Thông tin
+                                        liên quan
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item waves-effect waves-light showload"
+                                            href="javascript:;">Danh sách lược đồ mẫu</a>
+                                        <a class="dropdown-item waves-effect waves-light showload"
+                                            href="javascript:;">Tìm bao đóng</a>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li
+                                class="nav-item have-hover dropdown mb-0 main-menu ket-qua-xet-tot-nghiep ket-qua-xet-tien-tot-nghiep">
+                                <div class="btn-group dropdown">
+                                    <a class="nav-link waves-effect waves-light dark-grey-text font-weight-bold" blank
+                                        href="https://anhtuana2k422001.github.io/database-support-software/">Tải phần
+                                        mềm Desktop</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown mb-0 thong-bao" id="thong-bao">
+                                <a href="javascript:;"
+                                    class="showload nav-link waves-effect waves-light dark-grey-text font-weight-bold">Về
+                                    tác giả
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div id='mobile-menu' class="mobile-menu-btn">
+                <i class="menu-icon ti-menu"></i>
+            </div>
+        </header>
+
+
+        <main>
+            <div style="display: flex; justify-content: center;">
+                <div><img height="60" class="" src="/Content/img/image_icon.png" alt="Alternate Text" /></div>
+                <h4 style="text-align: center; line-height: 60px; color: #2b829d;  font-weight: 900;">Phân tích cơ sở dữ
+                    liệu</h4>
+            </div>
+
+            <fieldset class="scheduler-border ">
+                <legend class="scheduler-border asterisk">Nhập thông tin lược đồ quan hệ</legend>
+                <div class="col-md-12 mt-5">
+                    <div class="form-group mt-4 label-floating field-confirm is-focused">
+                        <h6 class="asterisk control-label">Tập thuộc tính VD: <span
+                                style="font-size: 12px; color: #ce0606a9;">{A, B, C, D, E, G}</span></h6>
+                        <input type="text" name="attributeSet" class="form-control" required value="{A, B, C, D, E, G}">
+                    </div>
+                </div>
+                <div class="col-md-12 mt-5">
+                    <div class="form-group mt-4 label-floating field-confirm is-focused">
+                        <h6 class="asterisk control-label">Tập phụ thuộc hàm VD: <span
+                                style="font-size: 12px; color: #ce0606a9;">{ AB →C; C →A; BC →D; ACD →B; D →EG; BE
+                                →C; CG →BD; CE →AG }</span></h6>
+                        <input type="text" name="dependencyChain" class="form-control" required value="{ AB →C; C →A; BC →D; ACD →B; D →EG; BE→C; CG →BD; CE →AG }">
+                    </div>
+                </div>
+
+                <p class="text-danger" style="text-align: center; visibility: hidden;">Phụ thuộc hàm không hợp lệ
+                </p>
+
+                <div style="text-align: center;">
+                    <div class="buttons">
+                        <button id="button-start" class="btn-hover color-3">Bắt đầu</button>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <div id="list-form">
+
+                <div class="accordion md-accordion accordion-blocks row" id="accordionEx78" role="tablist">
+
+                    <div class="col-md-12">
+                        <div class="card z-depth-1">
+                            <div class="p-2 indigo-color" role="tab" id="092023">
+                                <span data-toggle="collapse" data-parent="#accordionEx78" href="#collapse092023"
+                                    aria-expanded="true" aria-controls="collapse092023">
+                                    <h6 class="mt-3 mb-3 pr-2 pl-2">
+                                        <p class="white-text"><strong> Kết quả: <span class="" style="color: #ffe308">
+                                                    Phân Tích Cơ Sở Dữ Liêu </span></strong></p>
+                                    </h6>
+                                </span>
+                            </div>
+                            <div id="collapse092023" class="collapse show" role="tabpanel"
+                                aria-labelledby="heading092023" data-parent="#accordionEx78">
+                                <div class="card-body custom-p-hr">
+
+                                    <fieldset class="information-list scheduler-border">
+                                        <!-- <legend class="scheduler-border mb-0 font-weight-bold text-uppercase ">Thôngtin lược đồ quan hệ</legend>
+                                            <p>Bao đóng:<b> ABCDEG</b></p>
+                                            <hr />
+                                            <p>Tập vế trái: <b>ABCDEG</b></p>
+                                            <hr />
+                                            <p>Tập vế phả: <b>CADBEG</b></p>
+                                            <hr />
+                                            <p>Tập nguồn N PTH: <b>{Ø}</b></p>
+                                            <hr />
+                                            <p>Tập trung gian M PTH: <b>CADBEG</b></p>
+                                            <hr />
+                                            <p>Tập phụ thuộc hàm: <b>F = { AB →C; C →A; BC →D; ACD →B; D →EG; BE →C; CG
+                                                    →BD; CE →AG }</b></p> -->
+                                    </fieldset>
+
+                                    <div>
+                                        <fieldset class="scheduler-border">
+                                            <p class="indigo-text  font-weight-bold text-uppercase"> Dạng 1: Tìm Khóa
+                                            </p>
+                                            <hr />
+                                            <p>Bước 1: <b>Xét TH khóa duy nhất</b></p>
+                                            <hr />
+                                            <p>Bước 2: <b>Xét TH có tập khóa</b></p>
+
+                                            <p class="indigo-text  font-weight-bold text-uppercase"> Dạng 2: Tìm PTH tối
+                                                thiểu </p>
+                                            <hr />
+                                            <p>Bước 1: <b>Xét TH khóa duy nhất</b></p>
+                                            <hr />
+                                            <p>Bước 2: <b>Xét TH có tập khóa</b></p>
+
+                                            <p class="indigo-text  font-weight-bold text-uppercase"> Dạng 3: Tìm Dạng
+                                                chuẩn </p>
+                                            <hr />
+                                            <p>Bước 1: <b>Xét TH khóa duy nhất</b></p>
+                                            <hr />
+                                            <p>Bước 2: <b>Xét TH có tập khóa</b></p>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="timeline">
+                <h6 class="mt-3 mb-3 pr-2 pl-2">
+                    <p class="white-text"><strong>Giới thiệu chức năng: <span class=""
+                                style="color: #ffe308">LQDH</span></strong></p>
+                </h6>
+                <ul>
+                    <li>
+                        <div class="div-anhtn">
+                            <div class="anhtn">
+                                <img class="anh-icon" src="/Content/img/image_icon.png" alt="Alternate Text" />
+
+                            </div>
+                            <div style="width:auto">
+                                <span style="text-align: center;">Tìm bao đóng</span>
+                                <div class="content">
+                                    <h3>Ví dụ: BE+ = BECAGD</h3>
+                                    <p>
+                                        Nhập thuộc tính có trong lược đồ quan hệ, phần mềm sẽ phân tích ra kết quả được
+                                        sắp theo đúng với phụ thuộc hàm.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="div-anhtn">
+                            <div class="anhtn">
+                                <img class="anh-icon" src="/Content/img/image_icon.png" alt="Alternate Text" />
+                            </div>
+                            <div style="width:auto">
+                                <span style="text-align: center;">Tìm khóa</span>
+                                <div class="content">
+                                    <h3> Ví dụ: LDQH có 7 khóa là AB, BC, BD, BE, CD, CE, CG</h3>
+                                    <p>
+                                        Tối ưu việc xét bao đóng của các thuộc tính ghép từ tập nguồn và tập trung gian,
+                                        tìm ra tất cả các khóa chính xác nhất.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="div-anhtn">
+                            <div class="anhtn">
+                                <img class="anh-icon" src="/Content/img/image_icon.png" alt="Alternate Text" />
+
+                            </div>
+                            <div style="width:auto">
+                                <span style="text-align: center;">Tìm phủ tối thiểu</span>
+                                <div class="content">
+                                    <h3>Ví dụ: F tối thiểu là Ftt = { AB→C, C→A, BC→D, D→E, D→G, BE→C, CG→B, CE→G }</h3>
+                                    <p>
+                                        Thông qua 3 bước phân rã, loại bỏ vế phải dư thừa và loại bỏ phụ thuộc hàm dư
+                                        thừa để tìm ra phủ tối thiểu của lược đồ.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="div-anhtn">
+                            <div class="anhtn">
+                                <img class="anh-icon" src="/Content/img/image_icon.png" alt="Alternate Text" />
+                            </div>
+                            <div style="width:auto">
+                                <span style="text-align: center;">Tìm dạng chuẩn</span>
+                                <div class="content">
+                                    <h3>Ví dụ: LDQH có 7 khóa là AB, BC, BD, BE, CD, CE, CG</h3>
+                                    <p>
+                                        Vậy lược đồ quan hệ chỉ đạt dạng chuẩn 1NF
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+        </main>
+        <footer class="page-footer font-small bg-white black-text z-depth-1 mt-5">
+            <div class="container text-md-left">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Thông tin liên hệ</h5>
+                        <ul class="footer_list-link">
+                            <li>Địa chỉ: Quận Bình Thạnh, TP.HCM</li>
+                            <li>ĐT: (+84) 392766630</li>
+                            <li>Email: anhtuana2k422001@gmail.com</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Danh mục</h5>
+                        <ul class="footer_list-link">
+                            <li class="">
+                                <a target="_blank" class="black-text " href="javascript:;">
+                                    Phân tích cơ sở dữ liệu
+                                </a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" class="black-text " href="javascript:;">
+                                    Danh sách lược đồ mẫu
+                                </a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" class="black-text " href="javascript:;">
+                                    Tìm bao đóng
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Liên kết</h5>
+                        <ul class="footer_list-link">
+                            <li class="">
+                                <a target="_blank" class="black-text " href="https://hoanhtuan.online/">
+                                    hoanhtuan.online
+                                </a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" class="black-text " href="https://cv.hoanhtuan.online/">
+                                    cv.hoanhtuan.online
+                                </a>
+                            </li>
+                            <li class="">
+                                <a target="_blank" class="black-text " href="https://csdl.hoanhtuan.online/">
+                                    csdl.hoanhtuan.online
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright text-center py-3 indigo-color">
+                Bản quyền © xây dựng và phát triển bởi <b>Hồ Anh Tuấn</b> năm 2023
+            </div>
+        </footer>
+
+        <div style="float: right;" id="lien-ket">
+            <div class="lienket sanpham-trangchu">
+                <div class="social-icons">
+                    <ul style="padding: 0px !important;margin: 0px !important;">
+                        <li class="lixahoi"><a href="https://zalo.me/0392766630"><img class="icon-xahoi"
+                                    style="width:60px; height:60px; border-radius: 50%;" src="/Content/img/svg/zalo.gif"
+                                    title="Đường dây nóng" /></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="phone-show">
+                <b>Liên hệ hỗ trợ: (84) 392766630 </b>
+            </div>
         </div>
-        <div class="csdl-phan-tich">
 
-            <div id="information-list">
-            </div>
-
-            <div id="primaryKey">
-                
-            </div>
-
-            <div id="minimalCove-container">
-                
-            </div>
-
-            <div id="normalForm">
-                
-            </div>
-        </div>
     </div>
-    <script type="module" src="./assets/js/main.js"></script>
+
+    <script type="module" src="./Content/js/main.js"></script>
 </body>
+
 </html>
