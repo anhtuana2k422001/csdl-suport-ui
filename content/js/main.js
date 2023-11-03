@@ -171,9 +171,13 @@ function renderhanTichCSDL(response) {
     normalFormContainer.appendChild(titleNormalForm);
     normalFormContainer.appendChild(valueListNormalForm);
     normalFormContainer.appendChild(resultNormalForm);
+
+    document.querySelector(".container-result").style.display = "block";
   } else {
     var resultMessage = document.querySelector(".message-error");
     resultMessage.innerHTML = response.resultMessage;
+    resultMessage.style.visibility = "initial";
+    document.querySelector(".container-result").style.display = "none";
   }
 }
 
@@ -189,7 +193,6 @@ function handlePhanTichCSDL(apiCall) {
     document.getElementById("minimalCove-container").innerHTML = EMPTY;
     document.getElementById("normalForm").innerHTML = EMPTY;
     document.querySelector(".message-error").innerHTML = EMPTY;
-    document.querySelector(".card.z-depth-1").style.display = "block";
 
     var attributeSet = document.querySelector(
       'input[name="attributeSet"]'
